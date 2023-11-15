@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'NunitoSans';
+    src: url('/src/assets/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    /* * Light Mode - default */
+    :root {
+        --color-text: 200 15% 8%;
+        --color-bg: 0 0% 98%;
+        --color-input: 0 0% 52%;
+        --color-element: 0 0% 100%;
+    }
+
+    /* * Dark mode */
+    :root[data-theme='dark'] {
+        --color-text: 0 0% 100%;
+        --color-bg: 207 26% 17%;
+        --color-element: 209 23% 22%;
+    }
+}
