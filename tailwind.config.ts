@@ -20,7 +20,7 @@ export default {
     },
     plugins: [
         tailwindcssForms({
-            strategy: 'base',
+            strategy: 'class',
         }),
     ],
 } satisfies Config;
