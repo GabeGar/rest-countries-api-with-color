@@ -27,7 +27,11 @@ const Filter = () => {
                 onClick={handleShowFilterClick}
             >
                 <span>Filter by Region</span>
-                <span>
+                <span
+                    className={`transition-all ${
+                        showFilterOptions ? 'rotate-180' : 'rotate-0'
+                    }`}
+                >
                     <IoIosArrowDown />
                 </span>
             </button>
