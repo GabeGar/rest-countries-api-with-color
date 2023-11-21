@@ -26,7 +26,7 @@ const Countries = () => {
                             className="h-[10.9rem] w-full rounded-t-md object-center"
                         />
                         <div className="p-8">
-                            <h2 className="mb-2 font-extrabold">
+                            <h2 className="mb-2 text-base font-extrabold">
                                 {country.name.common}
                             </h2>
 
