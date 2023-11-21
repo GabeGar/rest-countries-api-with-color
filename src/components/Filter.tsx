@@ -21,7 +21,7 @@ const Filter = () => {
     };
 
     return (
-        <section className="relative max-w-[60%]">
+        <section className="relative max-w-[60%] shadow-md">
             <button
                 className="flex min-w-full items-center justify-between space-x-8 rounded-md bg-colorElement px-7 py-4 text-colorText"
                 onClick={handleShowFilterClick}
@@ -37,7 +37,7 @@ const Filter = () => {
             </button>
 
             {showFilterOptions && (
-                <div className="absolute mt-1 flex w-full flex-col space-y-4 rounded-md bg-colorElement py-4 text-colorText">
+                <div className="absolute mt-1 flex w-full flex-col space-y-4 rounded-md bg-colorElement py-4 text-colorText shadow-md">
                     {regions.map((region) => {
                         return (
                             <button

@@ -2,7 +2,7 @@ import { FormEvent } from 'react';
 import { useDarkMode } from '../context/DarkModeContext';
 import SearchIcon from './ui/SearchIcon';
 
-const inputClasses = `flex-1 rounded-lg bg-colorElement py-4 text-center placeholder:pl-20 placeholder:text-left focus:outline-none focus:placeholder:opacity-0`;
+const inputClasses = `flex-1 rounded-lg bg-colorElement py-4 text-center placeholder:pl-20 placeholder:text-left focus:outline-none focus:placeholder:opacity-0 shadow-md`;
 
 const SearchCountryField = () => {
     const { isDarkMode } = useDarkMode();
