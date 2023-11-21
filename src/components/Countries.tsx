@@ -25,7 +25,7 @@ const Countries = () => {
                                 alt={country.flags.alt}
                                 className="h-[10.9rem] w-full rounded-t-md object-center"
                             />
-                            <div className="rounded-md bg-colorElement p-8">
+                            <div className="rounded-b-md bg-colorElement p-8">
                                 <h2 className="mb-2 text-base font-extrabold">
                                     {country.name.common}
                                 </h2>
