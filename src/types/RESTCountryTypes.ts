@@ -12,16 +12,28 @@ interface Flags {
     png: string;
 }
 
-export interface RESTCountry {
+interface Currency {
+    name: string;
+}
+
+export interface RESTCountryBasic {
+    name: Name;
+    population: number;
+    region: string;
+    capital: string;
+    flags: Flags;
+}
+
+export interface RESTCountryFull {
     name: Name;
     population: number;
     region: string;
     subregion: string;
     capital: string;
     topLevelDomain: string;
-    currencies: string;
+    currencies: Currency[];
     languages: string;
-    border: string;
+    borders: string[];
     flags: Flags;
     tld: string[];
 }
