@@ -8,6 +8,7 @@ import {
     formatNumberWithCommas,
     formatMultiLangNativeNames,
 } from '../utils/utils';
+
 const paraBaseStyles = 'flex gap-1';
 const titleSpanBaseStyles = 'font-semibold';
 
@@ -121,7 +122,7 @@ const Details = () => {
                                         <Link
                                             key={border}
                                             to={`/${border}`}
-                                            className="flex-1 bg-colorElement px-8 py-1 shadow-2xl"
+                                            className="flex-1 bg-colorElement px-8 py-1 text-center shadow-2xl"
                                         >
                                             {border}
                                         </Link>
