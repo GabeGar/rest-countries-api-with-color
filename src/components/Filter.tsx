@@ -5,7 +5,7 @@ const Filter = () => {
     const [selectedRegion, setSelectedRegion] = useState('Filter by Region');
     const [showFilterOptions, setShowFilterOptions] = useState(false);
 
-    const regions = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'];
+    const regions = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
     const handleShowFilterClick = () => {
         setShowFilterOptions((isShown) => !isShown);
