@@ -3,7 +3,7 @@ import Header from './Header';
 
 const AppLayout = () => {
     return (
-        <div className="h-[100dvh] min-h-[100dvh] bg-colorBg">
+        <div className="min-h-[100dvh] bg-colorBg">
             <Header />
 
             <main className="px-5">
