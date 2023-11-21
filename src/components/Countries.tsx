@@ -18,14 +18,14 @@ const Countries = () => {
                     <li key={country.name.common}>
                         <Link
                             to={`/${country.name.common}`}
-                            className="rounded-md bg-colorElement text-colorText shadow-lg"
+                            className="rounded-md bg-colorElement text-colorText shadow-lg drop-shadow-xl"
                         >
                             <img
                                 src={country.flags.png}
                                 alt={country.flags.alt}
                                 className="h-[10.9rem] w-full rounded-t-md object-center"
                             />
-                            <div className="p-8">
+                            <div className="rounded-md bg-colorElement p-8">
                                 <h2 className="mb-2 text-base font-extrabold">
                                     {country.name.common}
                                 </h2>
