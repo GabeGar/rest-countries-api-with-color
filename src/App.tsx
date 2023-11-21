@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import AppLayout from './components/ui/AppLayout';
 import Home from './pages/Home';
+import Details from './pages/Details';
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<AppLayout />}>
                         <Route index element={<Home />} />
+                        <Route path=":countryName" element={<Details />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
