@@ -1,3 +1,4 @@
+import Countries from '../components/Countries';
 import Filter from '../components/Filter';
 import SearchCountryField from '../components/SearchCountryField';
 
@@ -6,6 +7,7 @@ const Home = () => {
         <div className="text-sm">
             <SearchCountryField />
             <Filter />
+            <Countries />
         </div>
     );
 };

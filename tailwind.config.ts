@@ -16,6 +16,9 @@ export default {
                 colorElement: 'hsl(var(--color-element) / <alpha-value>)',
                 colorInput: 'hsl(var(--color-input) / <alpha-value>)',
             },
+            gridTemplateColumns: {
+                appGridMobile: 'repeat(auto-fit, minmax(250px, 1fr))',
+            },
         },
     },
     plugins: [
