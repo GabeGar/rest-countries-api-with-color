@@ -1,4 +1,4 @@
-import { RESTCountry } from '../types/RESTCountryTypes';
+import { RESTCountryBasic, RESTCountryFull } from '../types/RESTCountryTypes';
 
 const BASE_URL = 'https://restcountries.com/v3.1';
 const FIELDS =
@@ -9,6 +9,15 @@ export const getCountries = async () => {
 
     if (!res.ok) throw new Error('Something went wrong getting countries');
 
-    const data = (await res.json()) as RESTCountry[];
+    const data = (await res.json()) as RESTCountryBasic[];
+    return data;
+};
+
+export const getCountry = async (name: string) => {
+    const res = await fetch(`${BASE_URL}/name/${name}?${FIELDS}`);
+
+    if (!res.ok) throw new Error('Something went wrong getting country');
+
+    const data = (await res.json()) as RESTCountryFull[];
     return data;
 };
