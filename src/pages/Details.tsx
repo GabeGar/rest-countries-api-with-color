@@ -2,11 +2,12 @@ import { Link, useParams } from 'react-router-dom';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 
 import { useCountry } from '../hooks/useCountry';
-import { getMultiLangNativeNames } from '../utils/getMultiLangNativeNames';
-import { formatNumberWithCommas } from '../utils/formatNumberWithCommas';
-import { formatCurrencyNames } from '../utils/formatCurrencyNames';
-import { formatLanguages } from '../utils/formatLanguages';
-
+import {
+    formatLanguages,
+    formatCurrencyNames,
+    formatNumberWithCommas,
+    formatMultiLangNativeNames,
+} from '../utils/utils';
 const paraBaseStyles = 'flex gap-1';
 const titleSpanBaseStyles = 'font-semibold';
 
@@ -55,7 +56,9 @@ const Details = () => {
                                         Native Name:
                                     </span>
                                     <span>
-                                        {getMultiLangNativeNames(countryInfo)}
+                                        {formatMultiLangNativeNames(
+                                            countryInfo,
+                                        )}
                                     </span>
                                 </p>
                                 <p className={paraBaseStyles}>
