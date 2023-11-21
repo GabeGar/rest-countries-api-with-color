@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
 const Filter = () => {
+    const [selectedRegion, setSelectedRegion] = useState('Filter by Region');
     const [showFilterOptions, setShowFilterOptions] = useState(false);
 
-    const regions = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
+    const regions = ['All', 'Africa', 'America', 'Asia', 'Europe', 'Oceania'];
 
     const handleShowFilterClick = () => {
         setShowFilterOptions((isShown) => !isShown);
@@ -17,6 +18,7 @@ const Filter = () => {
         // TODO: Use value to filter by region
 
         // Finally, close the filter options listbox
+        setSelectedRegion(value);
         setShowFilterOptions(false);
     };
 
@@ -26,7 +28,7 @@ const Filter = () => {
                 className="flex min-w-full items-center justify-between space-x-8 rounded-md bg-colorElement px-7 py-4 text-colorText"
                 onClick={handleShowFilterClick}
             >
-                <span>Filter by Region</span>
+                <span>{selectedRegion}</span>
                 <span
                     className={`transition-all ${
                         showFilterOptions ? 'rotate-180' : 'rotate-0'
