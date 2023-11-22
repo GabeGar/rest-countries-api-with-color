@@ -26,6 +26,14 @@ const Countries = () => {
         return country;
     });
 
+    // When no countries match query
+    if (searchCountries?.length === 0)
+        return (
+            <p className="mt-20 text-center text-2xl font-semibold">
+                No countries found...
+            </p>
+        );
+
     return (
         <ul className="mx-4 mt-6 grid grid-cols-appGridMobile gap-10 font-semibold">
             {searchCountries?.map((country) => {
