@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-import { useCountries } from '../hooks/useCountries';
-import { useSearchQuery } from '../context/SearchQueryContext';
+import { useCountries } from '../../hooks/useCountries';
+import { useSearchQuery } from '../../context/SearchQueryContext';
 import CountryItems from './CountryItems';
-import { useFilter } from '../context/FilterContext';
+import { useFilter } from '../../context/FilterContext';
 
 const itemsPerPage = 20;
 

@@ -1,6 +1,6 @@
 import { IoIosArrowDown } from 'react-icons/io';
-import { useFilter } from '../context/FilterContext';
-import { Region } from '../types/RESTCountryTypes';
+import { useFilter } from '../../context/FilterContext';
+import { Region } from '../../types/RESTCountryTypes';
 
 const Filter = () => {
     const {

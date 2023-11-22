@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent } from 'react';
-import { useDarkMode } from '../context/DarkModeContext';
-import { useSearchQuery } from '../context/SearchQueryContext';
-import { useFilter } from '../context/FilterContext';
+import { useDarkMode } from '../../context/DarkModeContext';
+import { useSearchQuery } from '../../context/SearchQueryContext';
+import { useFilter } from '../../context/FilterContext';
 import { IoMdCloseCircle } from 'react-icons/io';
-import SearchIcon from './ui/SearchIcon';
+import SearchIcon from '../ui/SearchIcon';
 
 const inputClasses = `flex-1 rounded-lg bg-colorElement py-4 text-center placeholder:pl-20 placeholder:text-left focus:outline-none focus:placeholder:opacity-0 drop-shadow-lg`;
 

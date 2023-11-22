@@ -1,6 +1,6 @@
-import Countries from '../components/Countries';
-import Filter from '../components/Filter';
-import SearchCountryField from '../components/SearchCountryField';
+import Countries from '../components/Countries/Countries';
+import Filter from '../components/Filter/Filter';
+import SearchCountryField from '../components/Search/SearchCountryField';
 
 const Home = () => {
     return (

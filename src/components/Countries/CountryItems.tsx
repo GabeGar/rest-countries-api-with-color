@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { RESTCountryBasic } from '../types/RESTCountryTypes';
-import { formatNumberWithCommas } from '../utils/utils';
+import { RESTCountryBasic } from '../../types/RESTCountryTypes';
+import { formatNumberWithCommas } from '../../utils/utils';
 
 interface Props {
     countryItems: RESTCountryBasic[];
