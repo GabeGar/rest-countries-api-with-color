@@ -72,14 +72,17 @@ const Countries = () => {
             {!searchQuery && (
                 <ReactPaginate
                     breakLabel="..."
-                    nextLabel=">"
+                    nextLabel="Next"
                     onPageChange={handlePageClick}
-                    pageRangeDisplayed={5}
+                    pageRangeDisplayed={3}
                     pageCount={pageCount}
-                    previousLabel="<"
+                    previousLabel="Prev"
                     renderOnZeroPageCount={null}
-                    className="mt-5 flex justify-center gap-3 bg-colorElement py-5 text-colorText"
-                    pageClassName=""
+                    className="mt-5 flex items-center justify-center gap-1  py-5 text-colorText"
+                    pageClassName="bg-colorBg p-1"
+                    activeClassName="font-semibold text-xl bg-colorElement"
+                    previousLinkClassName="font-semibold p-1"
+                    nextLinkClassName="font-semibold p-1"
                 />
             )}
         </>
