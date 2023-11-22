@@ -13,11 +13,12 @@ const Filter = () => {
 
     const regions = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
-    const handleShowFilterClick = () => {
-        onOpenFilter();
+    const handleShowFilterOptions = () => {
+        if (showFilterOptions) onCloseFilter();
+        else onOpenFilter();
     };
 
-    const handleFilterButtonClick = (e: React.MouseEvent) => {
+    const handleFilterRegion = (e: React.MouseEvent) => {
         const region = (e.target as HTMLButtonElement).value as Region;
         console.log(region);
 
@@ -32,7 +33,7 @@ const Filter = () => {
         <section className="relative z-50 max-w-[60%]">
             <button
                 className="flex min-w-full items-center justify-between space-x-8 rounded-md bg-colorElement px-7 py-4 text-colorText drop-shadow-lg"
-                onClick={handleShowFilterClick}
+                onClick={handleShowFilterOptions}
             >
                 <span>{selectedRegion}</span>
                 <span
@@ -52,7 +53,7 @@ const Filter = () => {
                                 key={region}
                                 value={region}
                                 className="flex pl-7"
-                                onClick={handleFilterButtonClick}
+                                onClick={handleFilterRegion}
                             >
                                 {region}
                             </button>
