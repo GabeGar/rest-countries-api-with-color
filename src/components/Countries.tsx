@@ -29,7 +29,7 @@ const Countries = () => {
     // When no countries match query
     if (searchCountries?.length === 0)
         return (
-            <p className="mt-20 text-center text-2xl font-semibold">
+            <p className="mt-20 text-center text-2xl font-semibold text-colorText">
                 No countries found...
             </p>
         );

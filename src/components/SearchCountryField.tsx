@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent } from 'react';
 import { useDarkMode } from '../context/DarkModeContext';
-import SearchIcon from './ui/SearchIcon';
 import { useSearchQuery } from '../context/SearchQueryContext';
+import { IoMdCloseCircle } from 'react-icons/io';
+import SearchIcon from './ui/SearchIcon';
 
 const inputClasses = `flex-1 rounded-lg bg-colorElement py-4 text-center placeholder:pl-20 placeholder:text-left focus:outline-none focus:placeholder:opacity-0 drop-shadow-lg`;
 
@@ -36,6 +37,16 @@ const SearchCountryField = () => {
                 value={searchQuery}
                 onChange={handleChange}
             />
+            {searchQuery.length > 0 && (
+                <button
+                    className={`absolute right-6 text-2xl ${textColor}`}
+                    onClick={() => {
+                        onChangeSearchQuery('');
+                    }}
+                >
+                    <IoMdCloseCircle />
+                </button>
+            )}
         </form>
     );
 };
