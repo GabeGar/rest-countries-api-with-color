@@ -23,9 +23,9 @@ const Filter = () => {
     };
 
     return (
-        <section className="relative z-50 max-w-[60%] drop-shadow-lg">
+        <section className="relative z-50 max-w-[60%]">
             <button
-                className="flex min-w-full items-center justify-between space-x-8 rounded-md bg-colorElement px-7 py-4 text-colorText"
+                className="flex min-w-full items-center justify-between space-x-8 rounded-md bg-colorElement px-7 py-4 text-colorText drop-shadow-lg"
                 onClick={handleShowFilterClick}
             >
                 <span>{selectedRegion}</span>
