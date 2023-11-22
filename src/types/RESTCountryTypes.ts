@@ -37,3 +37,12 @@ export interface RESTCountryFull {
     flags: Flags;
     tld: string[];
 }
+
+export type Region =
+    | 'All'
+    | 'Africa'
+    | 'Americas'
+    | 'Asia'
+    | 'Europe'
+    | 'Oceania'
+    | 'Filter by Region';

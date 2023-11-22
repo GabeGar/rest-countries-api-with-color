@@ -1,25 +1,31 @@
-import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useFilter } from '../context/FilterContext';
+import { Region } from '../types/RESTCountryTypes';
 
 const Filter = () => {
-    const [selectedRegion, setSelectedRegion] = useState('Filter by Region');
-    const [showFilterOptions, setShowFilterOptions] = useState(false);
+    const {
+        selectedRegion,
+        showFilterOptions,
+        onSelectRegion,
+        onOpenFilter,
+        onCloseFilter,
+    } = useFilter();
 
     const regions = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
     const handleShowFilterClick = () => {
-        setShowFilterOptions((isShown) => !isShown);
+        onOpenFilter();
     };
 
     const handleFilterButtonClick = (e: React.MouseEvent) => {
-        const value = (e.target as HTMLButtonElement).value;
-        console.log(value);
+        const region = (e.target as HTMLButtonElement).value as Region;
+        console.log(region);
 
         // TODO: Use value to filter by region
 
         // Finally, close the filter options listbox
-        setSelectedRegion(value);
-        setShowFilterOptions(false);
+        onSelectRegion(region);
+        onCloseFilter();
     };
 
     return (
