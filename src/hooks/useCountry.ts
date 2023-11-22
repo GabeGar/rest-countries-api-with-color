@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { getCountry } from '../services/apiRESTCountries';
 
-export const useCountry = (countryName: string) => {
+export const useCountry = (countryQuery: string) => {
     const { data, error, isPending } = useQuery({
-        queryKey: [countryName],
-        queryFn: () => getCountry(countryName),
+        queryKey: [countryQuery],
+        queryFn: () => getCountry(countryQuery),
     });
 
     return { data, error, isPending };

@@ -13,16 +13,19 @@ const paraBaseStyles = 'flex gap-1';
 const titleSpanBaseStyles = 'font-semibold';
 
 const Details = () => {
-    const { countryName } = useParams();
-
+    const { countryName: country } = useParams();
     const {
         data: countryData,
         error: countryError,
         isPending: isLoadingCountry,
-    } = useCountry(countryName ? countryName : '');
+    } = useCountry(country ? country : '');
 
     if (isLoadingCountry) return <p>Country Details loading...</p>;
     if (countryError) return <p>{countryError.message}</p>;
+
+    const countryDataArr = Array.isArray(countryData)
+        ? countryData
+        : [countryData];
 
     return (
         <div className="text-base">
@@ -37,8 +40,10 @@ const Details = () => {
             </Link>
 
             <section className="text-colorText">
-                {countryData?.map((countryInfo) => {
-                    console.log(countryInfo);
+                {countryDataArr.map((countryInfo) => {
+                    if (!countryInfo) {
+                        return null;
+                    }
 
                     return (
                         <div key={countryInfo.name.common}>
@@ -116,19 +121,22 @@ const Details = () => {
                             <h3 className="pb-4 pt-8 text-xl font-semibold">
                                 Border Countries:
                             </h3>
-                            <div className="flex flex-wrap gap-3 pb-12">
-                                {countryInfo.borders.map((border) => {
-                                    return (
-                                        <Link
-                                            key={border}
-                                            to={`/${border}`}
-                                            className="flex-1 bg-colorElement px-8 py-1 text-center drop-shadow-lg"
-                                        >
-                                            {border}
-                                        </Link>
-                                    );
-                                })}
-                            </div>
+                            {countryInfo.borders.length === 0 && <p>None</p>}
+                            {countryInfo.borders.length > 0 && (
+                                <div className="flex flex-wrap gap-3 pb-12">
+                                    {countryInfo.borders.map((border) => {
+                                        return (
+                                            <Link
+                                                key={border}
+                                                to={`/${border}`}
+                                                className="flex-1 bg-colorElement px-8 py-1 text-center drop-shadow-lg"
+                                            >
+                                                {border}
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
+                            )}
                         </div>
                     );
                 })}
