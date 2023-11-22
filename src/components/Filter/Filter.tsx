@@ -1,8 +1,10 @@
 import { IoIosArrowDown } from 'react-icons/io';
 import { useFilter } from '../../context/FilterContext';
 import { Region } from '../../types/RESTCountryTypes';
+import { useSearchQuery } from '../../context/SearchQueryContext';
 
 const Filter = () => {
+    const { onChangeSearchQuery } = useSearchQuery();
     const {
         selectedRegion,
         showFilterOptions,
@@ -20,6 +22,7 @@ const Filter = () => {
 
     const handleFilterRegion = (e: React.MouseEvent) => {
         const region = (e.target as HTMLButtonElement).value as Region;
+        onChangeSearchQuery('');
         onSelectRegion(region);
         onCloseFilter();
     };

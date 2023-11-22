@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
 import { useCountries } from '../../hooks/useCountries';
@@ -6,7 +6,7 @@ import { useFilter } from '../../context/FilterContext';
 import { useSearchQuery } from '../../context/SearchQueryContext';
 import CountryItems from './CountryItems';
 
-const itemsPerPage = 20;
+const itemsPerPage = 16;
 
 const Countries = () => {
     const { searchQuery } = useSearchQuery();
@@ -16,35 +16,34 @@ const Countries = () => {
         error: countriesError,
         isPending: isLoadingCountries,
     } = useCountries();
-
     const [itemOffset, setItemOffset] = useState(0);
 
+    // Ensure resetting of itemOffset whenever search query changes.
+    useEffect(() => {
+        setItemOffset(0);
+    }, [searchQuery]);
+
+    // Check for loading and error states
     if (isLoadingCountries) return <p>Loading countries...</p>;
     if (countriesError) return <p>{countriesError.message}</p>;
     if (!countries) return <p>Service is down. Try again later.</p>;
 
-    // Search + Filter
-    const searchAndFilterCountries = countries.filter((country) => {
-        const countryName = country.name.common.toLowerCase();
-        const query = searchQuery.toLowerCase();
-        const countryRegion = country.region;
+    // Apply Search Query
+    const searchResults = searchQuery
+        ? countries.filter((country) =>
+              country.name.common
+                  .toLowerCase()
+                  .startsWith(searchQuery.toLowerCase()),
+          )
+        : countries;
 
-        // Search
-        if (query.length >= 1) {
-            return countryName.startsWith(query);
-        }
-
-        // Filter
-        if (selectedRegion && countryRegion !== selectedRegion) {
-            return false;
-        }
-
-        // Return all if conditions above fail
-        return country;
-    });
+    // Apply Filter
+    const filteredResults = selectedRegion
+        ? searchResults.filter((country) => country.region === selectedRegion)
+        : searchResults;
 
     // When no countries match query
-    if (searchAndFilterCountries.length === 0)
+    if (filteredResults.length === 0)
         return (
             <p className="mt-20 text-center text-2xl font-semibold text-colorText">
                 No countries found...
@@ -53,17 +52,23 @@ const Countries = () => {
 
     // Paginate
     const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentItems = searchAndFilterCountries.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(searchAndFilterCountries.length / itemsPerPage);
+    const currentItems = filteredResults.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(filteredResults.length / itemsPerPage);
+    console.log('currentItems:', currentItems);
 
-    // Invoke when user click to request another page.
+    const isFirstPage = itemOffset === 0;
+    const isFinalPage = endOffset >= filteredResults.length;
+
+    // Invoke when the user clicks to request another page.
     const handlePageClick = (e: { selected: number }) => {
-        const newOffset = (e.selected * itemsPerPage) % countries.length;
-        console.log(
-            `User requested page number ${e.selected}, which is offset ${newOffset}`,
-        );
-        setItemOffset(newOffset);
+        const newOffset = e.selected * itemsPerPage;
+
+        // Reset item offset to 0, if there is an active search query.
+        if (searchQuery) {
+            setItemOffset(0);
+        } else {
+            setItemOffset(newOffset);
+        }
     };
 
     return (
@@ -78,11 +83,15 @@ const Countries = () => {
                     pageCount={pageCount}
                     previousLabel="Prev"
                     renderOnZeroPageCount={null}
-                    className="mt-5 flex items-center justify-center gap-1  py-5 text-colorText"
-                    pageClassName="bg-colorBg p-1"
-                    activeClassName="font-semibold text-xl bg-colorElement"
-                    previousLinkClassName="font-semibold p-1"
-                    nextLinkClassName="font-semibold p-1"
+                    className="mt-5 flex items-center justify-center gap-1 py-5 text-colorText"
+                    pageClassName="bg-colorBg p-1 rounded-md hover:bg-colorElement transition-all"
+                    activeClassName="font-semibold bg-colorElement"
+                    previousClassName={`${
+                        isFirstPage ? 'hidden' : ''
+                    } font-semibold p-1`}
+                    nextClassName={`${
+                        isFinalPage ? 'hidden' : ''
+                    } font-semibold p-1`}
                 />
             )}
         </>
