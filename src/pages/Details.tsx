@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router-dom';
-import { HiOutlineArrowLeft } from 'react-icons/hi';
 
 import { useCountry } from '../hooks/useCountry';
 import {
@@ -8,6 +7,7 @@ import {
     formatNumberWithCommas,
     formatMultiLangNativeNames,
 } from '../utils/utils';
+import BackButton from '../components/ui/BackButton';
 
 const paraBaseStyles = 'flex gap-1';
 const titleSpanBaseStyles = 'font-semibold';
@@ -22,6 +22,7 @@ const Details = () => {
 
     if (isLoadingCountry) return <p>Country Details loading...</p>;
     if (countryError) return <p>{countryError.message}</p>;
+    if (!countryData) return null;
 
     const countryDataArr = Array.isArray(countryData)
         ? countryData
@@ -29,22 +30,10 @@ const Details = () => {
 
     return (
         <div className="text-base">
-            <Link
-                to="/"
-                className="mb-16 mt-6 flex max-w-min items-center gap-3 self-start rounded-sm bg-colorElement px-7 py-2 text-colorText drop-shadow-lg"
-            >
-                <span className="">
-                    <HiOutlineArrowLeft />
-                </span>
-                <span>Back</span>
-            </Link>
+            <BackButton />
 
             <section className="text-colorText">
                 {countryDataArr.map((countryInfo) => {
-                    if (!countryInfo) {
-                        return null;
-                    }
-
                     return (
                         <div key={countryInfo.name.common}>
                             <div className="space-y-3">
