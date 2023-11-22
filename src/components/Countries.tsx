@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useCountries } from '../hooks/useCountries';
+import { useSearchQuery } from '../context/SearchQueryContext';
+import { formatNumberWithCommas } from '../utils/utils';
 
 const Countries = () => {
+    const { searchQuery } = useSearchQuery();
     const {
         data: countries,
         error: countriesError,
@@ -11,9 +14,21 @@ const Countries = () => {
     if (isLoadingCountries) return <p>Loading countries...</p>;
     if (countriesError) return <p>{countriesError.message}</p>;
 
+    // Search
+    const searchCountries = countries?.filter((country) => {
+        const countryName = country.name.common.toLowerCase();
+        const query = searchQuery.toLowerCase();
+
+        if (query.length >= 1) {
+            return countryName.startsWith(query);
+        }
+
+        return country;
+    });
+
     return (
         <ul className="mx-4 mt-6 grid grid-cols-appGridMobile gap-10 font-semibold">
-            {countries?.map((country) => {
+            {searchCountries?.map((country) => {
                 return (
                     <li key={country.name.common}>
                         <Link
@@ -35,7 +50,9 @@ const Countries = () => {
                                         Population:
                                     </span>
                                     <span className="font-light">
-                                        {country.population}
+                                        {formatNumberWithCommas(
+                                            country.population,
+                                        )}
                                     </span>
                                 </p>
                                 <p className="flex gap-1">

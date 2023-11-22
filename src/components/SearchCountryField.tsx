@@ -1,10 +1,12 @@
-import { FormEvent } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import { useDarkMode } from '../context/DarkModeContext';
 import SearchIcon from './ui/SearchIcon';
+import { useSearchQuery } from '../context/SearchQueryContext';
 
 const inputClasses = `flex-1 rounded-lg bg-colorElement py-4 text-center placeholder:pl-20 placeholder:text-left focus:outline-none focus:placeholder:opacity-0 drop-shadow-lg`;
 
 const SearchCountryField = () => {
+    const { searchQuery, onChangeSearchQuery } = useSearchQuery();
     const { isDarkMode } = useDarkMode();
 
     const textColor = isDarkMode
@@ -13,6 +15,10 @@ const SearchCountryField = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
+    };
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        onChangeSearchQuery(e.target.value);
     };
 
     return (
@@ -27,6 +33,8 @@ const SearchCountryField = () => {
                 name="country-search"
                 placeholder="Search for a country..."
                 className={`${inputClasses} ${textColor}`}
+                value={searchQuery}
+                onChange={handleChange}
             />
         </form>
     );
