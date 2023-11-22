@@ -22,6 +22,10 @@ const SearchCountryField = () => {
         onChangeSearchQuery(e.target.value);
     };
 
+    const handleClearField = () => {
+        onChangeSearchQuery('');
+    };
+
     return (
         <form
             onSubmit={handleSubmit}
@@ -40,9 +44,7 @@ const SearchCountryField = () => {
             {searchQuery.length > 0 && (
                 <button
                     className={`absolute right-6 text-2xl ${textColor}`}
-                    onClick={() => {
-                        onChangeSearchQuery('');
-                    }}
+                    onClick={handleClearField}
                 >
                     <IoMdCloseCircle />
                 </button>
