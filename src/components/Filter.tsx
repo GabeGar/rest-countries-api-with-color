@@ -11,7 +11,7 @@ const Filter = () => {
         onCloseFilter,
     } = useFilter();
 
-    const regions = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+    const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
     const handleShowFilterOptions = () => {
         if (showFilterOptions) onCloseFilter();
@@ -35,7 +35,9 @@ const Filter = () => {
                 className="flex min-w-full items-center justify-between space-x-8 rounded-md bg-colorElement px-7 py-4 text-colorText drop-shadow-lg"
                 onClick={handleShowFilterOptions}
             >
-                <span>{selectedRegion}</span>
+                <span>
+                    {selectedRegion ? selectedRegion : 'Filter by Region'}
+                </span>
                 <span
                     className={`transition-all ${
                         showFilterOptions ? 'rotate-180' : 'rotate-0'

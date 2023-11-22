@@ -16,8 +16,7 @@ interface Props {
 const FilterContext = createContext<FilterContextProps | null>(null);
 
 const FilterContextProvider = ({ children }: Props) => {
-    const [selectedRegion, setSelectedRegion] =
-        useState<Region>('Filter by Region');
+    const [selectedRegion, setSelectedRegion] = useState<Region>(null);
     const [showFilterOptions, setShowFilterOptions] = useState(false);
 
     const onSelectRegion = (region: Region) => {

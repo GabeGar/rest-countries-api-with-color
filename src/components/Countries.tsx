@@ -1,90 +1,88 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import ReactPaginate from 'react-paginate';
+
 import { useCountries } from '../hooks/useCountries';
 import { useSearchQuery } from '../context/SearchQueryContext';
-import { formatNumberWithCommas } from '../utils/utils';
+import CountryItems from './CountryItems';
+import { useFilter } from '../context/FilterContext';
+
+const itemsPerPage = 20;
 
 const Countries = () => {
     const { searchQuery } = useSearchQuery();
+    const { selectedRegion } = useFilter();
     const {
         data: countries,
         error: countriesError,
         isPending: isLoadingCountries,
     } = useCountries();
 
+    const [itemOffset, setItemOffset] = useState(0);
+
     if (isLoadingCountries) return <p>Loading countries...</p>;
     if (countriesError) return <p>{countriesError.message}</p>;
+    if (!countries) return <p>Service is down. Try again later.</p>;
 
-    // Search
-    const searchCountries = countries?.filter((country) => {
+    // Search + Filter
+    const searchAndFilterCountries = countries.filter((country) => {
         const countryName = country.name.common.toLowerCase();
         const query = searchQuery.toLowerCase();
+        const countryRegion = country.region;
 
+        // Search
         if (query.length >= 1) {
             return countryName.startsWith(query);
         }
 
+        // Filter
+        if (selectedRegion && countryRegion !== selectedRegion) {
+            return false;
+        }
+
+        // Return all if conditions above fail
         return country;
     });
 
     // When no countries match query
-    if (searchCountries?.length === 0)
+    if (searchAndFilterCountries.length === 0)
         return (
             <p className="mt-20 text-center text-2xl font-semibold text-colorText">
                 No countries found...
             </p>
         );
 
-    return (
-        <ul className="mx-4 mt-6 grid grid-cols-appGridMobile gap-10 font-semibold">
-            {searchCountries?.map((country) => {
-                return (
-                    <li key={country.name.common}>
-                        <Link
-                            to={`/${country.name.common}`}
-                            className="rounded-md bg-colorElement text-colorText shadow-lg drop-shadow-xl"
-                        >
-                            <img
-                                src={country.flags.png}
-                                alt={country.flags.alt}
-                                className="h-[10.9rem] w-full rounded-t-md object-center"
-                            />
-                            <div className="rounded-b-md bg-colorElement p-8">
-                                <h2 className="mb-2 text-base font-extrabold">
-                                    {country.name.common}
-                                </h2>
+    // Paginate
+    const endOffset = itemOffset + itemsPerPage;
+    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    const currentItems = searchAndFilterCountries.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(searchAndFilterCountries.length / itemsPerPage);
 
-                                <p className="flex gap-1">
-                                    <span className="font-semibold">
-                                        Population:
-                                    </span>
-                                    <span className="font-light">
-                                        {formatNumberWithCommas(
-                                            country.population,
-                                        )}
-                                    </span>
-                                </p>
-                                <p className="flex gap-1">
-                                    <span className="font-semibold">
-                                        Region:
-                                    </span>
-                                    <span className="font-light">
-                                        {country.region}
-                                    </span>
-                                </p>
-                                <p className="flex gap-1">
-                                    <span className="font-semibold">
-                                        Capital:
-                                    </span>
-                                    <span className="font-light">
-                                        {country.capital}
-                                    </span>
-                                </p>
-                            </div>
-                        </Link>
-                    </li>
-                );
-            })}
-        </ul>
+    // Invoke when user click to request another page.
+    const handlePageClick = (e: { selected: number }) => {
+        const newOffset = (e.selected * itemsPerPage) % countries.length;
+        console.log(
+            `User requested page number ${e.selected}, which is offset ${newOffset}`,
+        );
+        setItemOffset(newOffset);
+    };
+
+    return (
+        <>
+            <CountryItems countryItems={currentItems} />
+            {!searchQuery && (
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    previousLabel="<"
+                    renderOnZeroPageCount={null}
+                    className="mt-5 flex justify-center gap-3 bg-colorElement py-5 text-colorText"
+                    pageClassName=""
+                />
+            )}
+        </>
     );
 };
 

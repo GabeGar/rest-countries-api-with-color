@@ -39,10 +39,9 @@ export interface RESTCountryFull {
 }
 
 export type Region =
-    | 'All'
     | 'Africa'
     | 'Americas'
     | 'Asia'
     | 'Europe'
     | 'Oceania'
-    | 'Filter by Region';
+    | null;

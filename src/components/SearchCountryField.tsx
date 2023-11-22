@@ -31,7 +31,7 @@ const SearchCountryField = () => {
     // Automatically close out of filter and reset default states.
     const handleFocus = () => {
         onCloseFilter();
-        onSelectRegion('Filter by Region');
+        onSelectRegion(null);
     };
 
     return (
