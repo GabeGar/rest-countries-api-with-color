@@ -20,11 +20,6 @@ const Filter = () => {
 
     const handleFilterRegion = (e: React.MouseEvent) => {
         const region = (e.target as HTMLButtonElement).value as Region;
-        console.log(region);
-
-        // TODO: Use value to filter by region
-
-        // Finally, close the filter options listbox
         onSelectRegion(region);
         onCloseFilter();
     };
