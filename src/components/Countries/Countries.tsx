@@ -52,6 +52,11 @@ const Countries = () => {
     const handlePageClick = (e: { selected: number }) => {
         const newOffset = e.selected * itemsPerPage;
         setItemOffset(newOffset);
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
     };
 
     return (
