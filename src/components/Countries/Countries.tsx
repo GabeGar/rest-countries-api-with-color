@@ -5,6 +5,7 @@ import { useCountries } from '../../hooks/useCountries';
 import { useFilter } from '../../context/FilterContext';
 import { useSearchQuery } from '../../context/SearchQueryContext';
 import CountryItems from './CountryItems';
+import Loader from '../ui/Loader';
 
 const itemsPerPage = 16;
 
@@ -22,9 +23,19 @@ const Countries = () => {
         if (searchQuery || selectedRegion) setItemOffset(0);
     }, [searchQuery, selectedRegion]);
 
-    if (isLoadingCountries) return <p>Loading countries...</p>;
-    if (countriesError) return <p>{countriesError.message}</p>;
-    if (!countries) return <p>Service is down. Try again later.</p>;
+    if (isLoadingCountries) return <Loader />;
+    if (countriesError)
+        return (
+            <p className="mt-4 text-xl font-semibold text-colorText">
+                {countriesError.message}
+            </p>
+        );
+    if (!countries)
+        return (
+            <p className="mt-4 text-xl font-semibold text-colorText">
+                Service is down. Try again later.
+            </p>
+        );
 
     // Apply Search Query
     const searchResults = searchQuery
