@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { useCountry } from '../hooks/useCountry';
@@ -19,6 +20,13 @@ const Details = () => {
         error: countryError,
         isPending: isLoadingCountry,
     } = useCountry(country ? country : '');
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, [country]);
 
     if (isLoadingCountry) return <p>Country Details loading...</p>;
     if (countryError) return <p>{countryError.message}</p>;
