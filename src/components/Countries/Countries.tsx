@@ -18,12 +18,10 @@ const Countries = () => {
     } = useCountries();
     const [itemOffset, setItemOffset] = useState(0);
 
-    // Ensure resetting of itemOffset whenever search query changes.
     useEffect(() => {
-        setItemOffset(0);
-    }, [searchQuery]);
+        if (searchQuery || selectedRegion) setItemOffset(0);
+    }, [searchQuery, selectedRegion]);
 
-    // Check for loading and error states
     if (isLoadingCountries) return <p>Loading countries...</p>;
     if (countriesError) return <p>{countriesError.message}</p>;
     if (!countries) return <p>Service is down. Try again later.</p>;
@@ -42,33 +40,18 @@ const Countries = () => {
         ? searchResults.filter((country) => country.region === selectedRegion)
         : searchResults;
 
-    // When no countries match query
-    if (filteredResults.length === 0)
-        return (
-            <p className="mt-20 text-center text-2xl font-semibold text-colorText">
-                No countries found...
-            </p>
-        );
-
     // Paginate
-    const endOffset = itemOffset + itemsPerPage;
-    const currentItems = filteredResults.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(filteredResults.length / itemsPerPage);
-    console.log('currentItems:', currentItems);
-
+    const currentItems = filteredResults.slice(
+        itemOffset,
+        itemOffset + itemsPerPage,
+    );
     const isFirstPage = itemOffset === 0;
-    const isFinalPage = endOffset >= filteredResults.length;
+    const isFinalPage = itemOffset + itemsPerPage >= filteredResults.length;
 
-    // Invoke when the user clicks to request another page.
     const handlePageClick = (e: { selected: number }) => {
         const newOffset = e.selected * itemsPerPage;
-
-        // Reset item offset to 0, if there is an active search query.
-        if (searchQuery) {
-            setItemOffset(0);
-        } else {
-            setItemOffset(newOffset);
-        }
+        setItemOffset(newOffset);
     };
 
     return (
@@ -81,11 +64,12 @@ const Countries = () => {
                     onPageChange={handlePageClick}
                     pageRangeDisplayed={3}
                     pageCount={pageCount}
+                    forcePage={itemOffset / itemsPerPage}
                     previousLabel="Prev"
                     renderOnZeroPageCount={null}
                     className="mt-5 flex items-center justify-center gap-1 py-5 text-colorText"
                     pageClassName="bg-colorBg p-1 rounded-md hover:bg-colorElement transition-all"
-                    activeClassName="font-semibold bg-colorElement"
+                    activeClassName="font-semibold bg-colorElement text-lg"
                     previousClassName={`${
                         isFirstPage ? 'hidden' : ''
                     } font-semibold p-1`}
