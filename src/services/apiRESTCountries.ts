@@ -30,6 +30,5 @@ export const getCountry = async (countryQuery: string) => {
     if (!res.ok) throw new Error('Something went wrong getting country');
 
     const data = (await res.json()) as RESTCountryFull[];
-    console.log(data);
     return data;
 };
