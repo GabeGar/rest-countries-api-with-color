@@ -2,8 +2,10 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { useFilter } from '../../context/FilterContext';
 import { Region } from '../../types/RESTCountryTypes';
 import { useSearchQuery } from '../../context/SearchQueryContext';
+import { useEffect, useRef } from 'react';
 
 const Filter = () => {
+    const filterRef = useRef<HTMLElement | null>(null);
     const { onChangeSearchQuery } = useSearchQuery();
     const {
         selectedRegion,
@@ -14,6 +16,25 @@ const Filter = () => {
     } = useFilter();
 
     const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+
+    useEffect(() => {
+        const handleClickOutside: EventListener = (e) => {
+            if (
+                filterRef.current &&
+                !filterRef.current.contains(e.target as Node)
+            ) {
+                onCloseFilter();
+            }
+        };
+
+        // Add event listener when the component mounts
+        document.addEventListener('click', handleClickOutside);
+
+        // Remove event listener when the component unmounts
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [onCloseFilter]);
 
     const handleShowFilterOptions = () => {
         if (showFilterOptions) onCloseFilter();
@@ -28,7 +49,7 @@ const Filter = () => {
     };
 
     return (
-        <section className="relative z-50 max-w-[60%]">
+        <section className="relative z-50 max-w-[60%]" ref={filterRef}>
             <button
                 className="flex min-w-full items-center justify-between space-x-8 rounded-md bg-colorElement px-7 py-4 text-colorText drop-shadow-lg"
                 onClick={handleShowFilterOptions}
