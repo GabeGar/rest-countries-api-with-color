@@ -22,6 +22,9 @@ export default {
             gridTemplateColumns: {
                 appGrid: 'repeat(auto-fit, minmax(250px, 1fr))',
             },
+            screens: {
+                xsm: '375px',
+            },
         },
     },
     plugins: [
