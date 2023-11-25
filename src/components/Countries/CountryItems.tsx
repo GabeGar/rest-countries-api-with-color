@@ -13,7 +13,7 @@ const CountryItems = ({ countryItems }: Props) => {
                 return (
                     <li
                         key={country.name.common}
-                        className="only:mx-auto xsm:max-w-[15rem] sm:max-w-none md:max-w-[25rem]"
+                        className="transition-all only:mx-auto hover:scale-105 xsm:max-w-[15rem] sm:max-w-none md:max-w-[25rem]"
                     >
                         <Link
                             to={`/${country.name.common}`}

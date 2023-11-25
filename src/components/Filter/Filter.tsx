@@ -3,9 +3,11 @@ import { useFilter } from '../../context/FilterContext';
 import { Region } from '../../types/RESTCountryTypes';
 import { useSearchQuery } from '../../context/SearchQueryContext';
 import { useEffect, useRef } from 'react';
+import { useDarkMode } from '../../context/DarkModeContext';
 
 const Filter = () => {
     const filterRef = useRef<HTMLElement | null>(null);
+    const { isDarkMode } = useDarkMode();
     const { onChangeSearchQuery } = useSearchQuery();
     const {
         selectedRegion,
@@ -27,10 +29,8 @@ const Filter = () => {
             }
         };
 
-        // Add event listener when the component mounts
         document.addEventListener('click', handleClickOutside);
 
-        // Remove event listener when the component unmounts
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
@@ -67,13 +67,25 @@ const Filter = () => {
             </button>
 
             {showFilterOptions && (
-                <div className="absolute mt-1 flex w-full flex-col space-y-4 rounded-md bg-colorElement py-4 text-colorText shadow-md">
+                <div className="absolute mt-1 flex w-full flex-col rounded-md bg-colorElement py-4 text-colorText shadow-md">
                     {regions.map((region) => {
+                        const isSelected = selectedRegion === region;
+
                         return (
                             <button
                                 key={region}
                                 value={region}
-                                className="flex pl-7"
+                                className={`flex py-3 pl-7 ${
+                                    !isSelected && 'hover:bg-colorBg '
+                                } ${
+                                    isSelected && !isDarkMode
+                                        ? 'bg-colorInput text-colorElement'
+                                        : ''
+                                } ${
+                                    isSelected && isDarkMode
+                                        ? 'bg-colorInput text-colorText'
+                                        : ''
+                                }`}
                                 onClick={handleFilterRegion}
                             >
                                 {region}

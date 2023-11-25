@@ -169,7 +169,7 @@ const Details = () => {
                                         </div>
                                     </div>
 
-                                    <div className="md:flex md:gap-3 md:pt-12">
+                                    <div className="md:flex md:items-center md:gap-3 md:pt-12">
                                         <h3 className="pb-4 pt-8 text-xl font-semibold md:pb-0 md:pt-0">
                                             Border Countries:
                                         </h3>
@@ -181,7 +181,7 @@ const Details = () => {
                                                             <Link
                                                                 key={border}
                                                                 to={`/${border}`}
-                                                                className="flex-1 rounded-md bg-colorElement px-8 py-1 text-center drop-shadow-lg transition-all hover:bg-colorInput hover:text-colorElement"
+                                                                className="flex-1 rounded-md bg-colorElement px-8 py-1 text-center drop-shadow-lg transition-all hover:bg-colorText hover:text-colorElement"
                                                             >
                                                                 {border}
                                                             </Link>
@@ -190,7 +190,9 @@ const Details = () => {
                                                 )}
                                             </div>
                                         ) : (
-                                            <p className="pb-12">None</p>
+                                            <p className="pb-12 md:pb-0">
+                                                None
+                                            </p>
                                         )}
                                     </div>
                                 </div>
