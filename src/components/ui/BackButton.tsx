@@ -9,7 +9,7 @@ const BackButton = () => {
             onClick={() => {
                 navigate('/');
             }}
-            className="mb-16 mt-6 flex max-w-min items-center gap-3 self-start rounded-sm bg-colorElement px-7 py-2 text-colorText drop-shadow-lg"
+            className="mb-16 mt-10 flex max-w-min items-center gap-3 self-start rounded-sm bg-colorElement px-7 py-2 text-colorText drop-shadow-lg md:ml-16 md:mt-16"
         >
             <span>
                 <HiOutlineArrowLeft />

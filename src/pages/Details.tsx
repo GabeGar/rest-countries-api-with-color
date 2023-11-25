@@ -46,96 +46,155 @@ const Details = () => {
                 {countryDataArr.map((countryInfo) => {
                     return (
                         <div key={countryInfo.name.common}>
-                            <div className="space-y-3">
-                                <img
-                                    src={countryInfo.flags.png}
-                                    alt={countryInfo.flags.alt}
-                                    className="w-full object-center pb-8"
-                                />
-                                <h2 className="pb-4 text-2xl font-extrabold">
-                                    {countryInfo.name.common}
-                                </h2>
-
-                                <p className={paraBaseStyles}>
-                                    <span className={titleSpanBaseStyles}>
-                                        Native Name:
-                                    </span>
-                                    <span>
-                                        {formatMultiLangNativeNames(
-                                            countryInfo,
-                                        )}
-                                    </span>
-                                </p>
-                                <p className={paraBaseStyles}>
-                                    <span className={titleSpanBaseStyles}>
-                                        Population:
-                                    </span>
-                                    <span>
-                                        {formatNumberWithCommas(
-                                            countryInfo.population,
-                                        )}
-                                    </span>
-                                </p>
-                                <p className={paraBaseStyles}>
-                                    <span className={titleSpanBaseStyles}>
-                                        Region:
-                                    </span>
-                                    <span>{countryInfo.region}</span>
-                                </p>
-                                <p className={paraBaseStyles}>
-                                    <span className={titleSpanBaseStyles}>
-                                        Sub Region:
-                                    </span>
-                                    <span>{countryInfo.subregion}</span>
-                                </p>
-                                <p className={`${paraBaseStyles} pb-8`}>
-                                    <span className={titleSpanBaseStyles}>
-                                        Capital:
-                                    </span>
-                                    <span>{countryInfo.capital}</span>
-                                </p>
-
-                                <p className={paraBaseStyles}>
-                                    <span className={titleSpanBaseStyles}>
-                                        Top Level Domain:
-                                    </span>
-                                    <span>{countryInfo.tld}</span>
-                                </p>
-                                <p className={paraBaseStyles}>
-                                    <span className={titleSpanBaseStyles}>
-                                        Currencies:
-                                    </span>
-                                    <span>
-                                        {formatCurrencyNames(countryInfo)}
-                                    </span>
-                                </p>
-                                <p className={paraBaseStyles}>
-                                    <span className={titleSpanBaseStyles}>
-                                        Languages:
-                                    </span>
-                                    <span>{formatLanguages(countryInfo)}</span>
-                                </p>
-                            </div>
-
-                            <h3 className="pb-4 pt-8 text-xl font-semibold">
-                                Border Countries:
-                            </h3>
-                            {countryInfo.borders.length === 0 && <p>None</p>}
-                            {countryInfo.borders.length > 0 && (
-                                <div className="flex flex-wrap gap-3 pb-12">
-                                    {countryInfo.borders.map((border) => {
-                                        return (
-                                            <Link
-                                                key={border}
-                                                to={`/${border}`}
-                                                className="flex-1 bg-colorElement px-8 py-1 text-center drop-shadow-lg"
-                                            >
-                                                {border}
-                                            </Link>
-                                        );
-                                    })}
+                            <div className="md:mx-16 md:grid md:grid-cols-2 md:gap-24">
+                                <div className="pb-12 md:pb-0">
+                                    <img
+                                        src={countryInfo.flags.png}
+                                        alt={countryInfo.flags.alt}
+                                        className="w-full object-center md:max-h-[35rem]"
+                                    />
                                 </div>
-                            )}
+                                <div className="space-y-3 md:my-auto">
+                                    <h2 className="pb-4 text-2xl font-extrabold md:text-3xl">
+                                        {countryInfo.name.common}
+                                    </h2>
+                                    <div className="md:grid md:grid-cols-2 md:gap-12">
+                                        <div className="space-y-3">
+                                            <p className={paraBaseStyles}>
+                                                <span
+                                                    className={
+                                                        titleSpanBaseStyles
+                                                    }
+                                                >
+                                                    Native Name:
+                                                </span>
+                                                <span>
+                                                    {formatMultiLangNativeNames(
+                                                        countryInfo,
+                                                    )}
+                                                </span>
+                                            </p>
+                                            <p className={paraBaseStyles}>
+                                                <span
+                                                    className={
+                                                        titleSpanBaseStyles
+                                                    }
+                                                >
+                                                    Population:
+                                                </span>
+                                                <span>
+                                                    {formatNumberWithCommas(
+                                                        countryInfo.population,
+                                                    )}
+                                                </span>
+                                            </p>
+                                            <p className={paraBaseStyles}>
+                                                <span
+                                                    className={
+                                                        titleSpanBaseStyles
+                                                    }
+                                                >
+                                                    Region:
+                                                </span>
+                                                <span>
+                                                    {countryInfo.region}
+                                                </span>
+                                            </p>
+                                            <p className={paraBaseStyles}>
+                                                <span
+                                                    className={
+                                                        titleSpanBaseStyles
+                                                    }
+                                                >
+                                                    Sub Region:
+                                                </span>
+                                                <span>
+                                                    {countryInfo.subregion}
+                                                </span>
+                                            </p>
+                                            <p
+                                                className={`${paraBaseStyles} pb-8`}
+                                            >
+                                                <span
+                                                    className={
+                                                        titleSpanBaseStyles
+                                                    }
+                                                >
+                                                    Capital:
+                                                </span>
+                                                <span>
+                                                    {countryInfo.capital}
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div className="space-y-3">
+                                            <p className={paraBaseStyles}>
+                                                <span
+                                                    className={
+                                                        titleSpanBaseStyles
+                                                    }
+                                                >
+                                                    Top Level Domain:
+                                                </span>
+                                                <span>{countryInfo.tld}</span>
+                                            </p>
+                                            <p className={paraBaseStyles}>
+                                                <span
+                                                    className={
+                                                        titleSpanBaseStyles
+                                                    }
+                                                >
+                                                    Currencies:
+                                                </span>
+                                                <span>
+                                                    {formatCurrencyNames(
+                                                        countryInfo,
+                                                    )}
+                                                </span>
+                                            </p>
+                                            <p className={paraBaseStyles}>
+                                                <span
+                                                    className={
+                                                        titleSpanBaseStyles
+                                                    }
+                                                >
+                                                    Languages:
+                                                </span>
+                                                <span>
+                                                    {formatLanguages(
+                                                        countryInfo,
+                                                    )}
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="md:flex md:gap-3 md:pt-12">
+                                        <h3 className="pb-4 pt-8 text-xl font-semibold md:pb-0 md:pt-0">
+                                            Border Countries:
+                                        </h3>
+                                        {countryInfo.borders.length > 0 ? (
+                                            <div className="flex flex-wrap gap-3 pb-12 md:items-center md:justify-center md:pb-0">
+                                                {countryInfo.borders.map(
+                                                    (border) => {
+                                                        return (
+                                                            <Link
+                                                                key={border}
+                                                                to={`/${border}`}
+                                                                className="flex-1 rounded-md bg-colorElement px-8 py-1 text-center drop-shadow-lg transition-all hover:bg-colorInput hover:text-colorElement"
+                                                            >
+                                                                {border}
+                                                            </Link>
+                                                        );
+                                                    },
+                                                )}
+                                            </div>
+                                        ) : (
+                                            <p className="pb-12">None</p>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     );
                 })}
