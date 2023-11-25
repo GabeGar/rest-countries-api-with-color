@@ -46,6 +46,13 @@ const Countries = () => {
           )
         : countries;
 
+    if (searchResults.length === 0)
+        return (
+            <p className="mt-4 flex justify-center text-2xl font-semibold text-colorText">
+                No country found. Check spelling.
+            </p>
+        );
+
     // Apply Filter
     const filteredResults = selectedRegion
         ? searchResults.filter((country) => country.region === selectedRegion)

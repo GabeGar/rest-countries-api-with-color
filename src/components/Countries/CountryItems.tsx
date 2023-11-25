@@ -13,7 +13,7 @@ const CountryItems = ({ countryItems }: Props) => {
                 return (
                     <li
                         key={country.name.common}
-                        className="xsm:max-w-[15rem] only:mx-auto md:max-w-[18.75rem]"
+                        className="xsm:max-w-[15rem] only:mx-auto sm:max-w-none md:max-w-[25rem]"
                     >
                         <Link
                             to={`/${country.name.common}`}
