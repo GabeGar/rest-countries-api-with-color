@@ -10,6 +10,7 @@ import {
 } from '../utils/utils';
 import BackButton from '../components/ui/BackButton';
 import Loader from '../components/ui/Loader';
+import Error from '../components/ui/Error';
 
 const paraBaseStyles = 'flex gap-1';
 const titleSpanBaseStyles = 'font-semibold';
@@ -30,12 +31,7 @@ const Details = () => {
     }, [country]);
 
     if (isLoadingCountry) return <Loader />;
-    if (countryError)
-        return (
-            <p className="mt-4 text-xl font-semibold text-colorText">
-                {countryError.message}
-            </p>
-        );
+    if (countryError) return <Error message={countryError.message} />;
     if (!countryData) return null;
 
     const countryDataArr = Array.isArray(countryData)

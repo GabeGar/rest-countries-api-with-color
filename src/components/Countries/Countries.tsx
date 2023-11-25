@@ -6,6 +6,7 @@ import { useFilter } from '../../context/FilterContext';
 import { useSearchQuery } from '../../context/SearchQueryContext';
 import CountryItems from './CountryItems';
 import Loader from '../ui/Loader';
+import Error from '../ui/Error';
 
 const itemsPerPage = 20;
 
@@ -24,18 +25,8 @@ const Countries = () => {
     }, [searchQuery, selectedRegion]);
 
     if (isLoadingCountries) return <Loader />;
-    if (countriesError)
-        return (
-            <p className="mt-4 text-xl font-semibold text-colorText">
-                {countriesError.message}
-            </p>
-        );
-    if (!countries)
-        return (
-            <p className="mt-4 text-xl font-semibold text-colorText">
-                Service is down. Try again later.
-            </p>
-        );
+    if (countriesError) return <Error message={countriesError.message} />;
+    if (!countries) return null;
 
     // Apply Search Query
     const searchResults = searchQuery
