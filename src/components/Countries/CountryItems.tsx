@@ -8,10 +8,13 @@ interface Props {
 
 const CountryItems = ({ countryItems }: Props) => {
     return (
-        <ul className="mx-4 mt-10 grid grid-cols-appGridMobile gap-10 font-semibold">
+        <ul className="grid-cols-appGrid mx-6 mt-10 grid gap-10 font-semibold md:mx-16 md:gap-24">
             {countryItems.map((country) => {
                 return (
-                    <li key={country.name.common}>
+                    <li
+                        key={country.name.common}
+                        className="only:mx-auto md:max-w-[18.75rem]"
+                    >
                         <Link
                             to={`/${country.name.common}`}
                             className="rounded-md bg-colorElement text-colorText shadow-lg drop-shadow-xl"

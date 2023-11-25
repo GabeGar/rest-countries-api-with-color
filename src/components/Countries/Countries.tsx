@@ -7,7 +7,7 @@ import { useSearchQuery } from '../../context/SearchQueryContext';
 import CountryItems from './CountryItems';
 import Loader from '../ui/Loader';
 
-const itemsPerPage = 16;
+const itemsPerPage = 20;
 
 const Countries = () => {
     const { searchQuery } = useSearchQuery();
@@ -83,15 +83,15 @@ const Countries = () => {
                     forcePage={itemOffset / itemsPerPage}
                     previousLabel="Prev"
                     renderOnZeroPageCount={null}
-                    className="mt-5 flex items-center justify-center gap-1 py-5 text-colorText"
-                    pageClassName="bg-colorBg p-1 rounded-md hover:bg-colorElement transition-all"
+                    className="mt-5 flex items-center justify-center gap-1 py-5 sm:gap-[.35rem] md:gap-2"
+                    pageClassName="bg-colorBg p-1 rounded-md hover:bg-colorElement transition-all md:px-3 md:py-2 text-colorElement bg-colorText hover:text-colorText hover:scale-[1.2] sm:p-2"
                     activeClassName="font-semibold bg-colorElement text-lg"
                     previousClassName={`${
                         isFirstPage ? 'hidden' : ''
-                    } font-semibold p-1`}
+                    } font-semibold p-1 md:px-3 text-colorBg bg-colorText rounded-md hover:text-colorText hover:scale-[1.2] transition-all hover:bg-colorElement`}
                     nextClassName={`${
                         isFinalPage ? 'hidden' : ''
-                    } font-semibold p-1`}
+                    } font-semibold p-1 md:px-3 text-colorBg bg-colorText rounded-md hover:text-colorText hover:scale-[1.2] transition-all hover:bg-colorElement`}
                 />
             )}
         </>

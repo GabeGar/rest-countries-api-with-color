@@ -5,7 +5,7 @@ import { useFilter } from '../../context/FilterContext';
 import { IoMdCloseCircle } from 'react-icons/io';
 import SearchIcon from '../ui/SearchIcon';
 
-const inputClasses = `flex-1 rounded-lg bg-colorElement py-4 text-center placeholder:pl-20 placeholder:text-left focus:outline-none focus:placeholder:opacity-0 drop-shadow-lg`;
+const inputClasses = `flex-1 rounded-lg bg-colorElement py-4 text-center placeholder:pl-20 placeholder:text-left focus:outline-none focus:placeholder:opacity-0 drop-shadow-lg md:min-w-[26rem]`;
 
 const SearchCountryField = () => {
     const { onCloseFilter, onSelectRegion } = useFilter();

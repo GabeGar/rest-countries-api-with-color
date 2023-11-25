@@ -20,7 +20,7 @@ export default {
                 colorInput: 'hsl(var(--color-input) / <alpha-value>)',
             },
             gridTemplateColumns: {
-                appGridMobile: 'repeat(auto-fit, minmax(250px, 1fr))',
+                appGrid: 'repeat(auto-fit, minmax(250px, 1fr))',
             },
         },
     },

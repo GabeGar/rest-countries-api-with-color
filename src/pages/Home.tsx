@@ -6,8 +6,10 @@ import ScrollToButtons from '../components/ui/ScrollToButtons';
 const Home = () => {
     return (
         <div className="text-sm">
-            <SearchCountryField />
-            <Filter />
+            <div className="md:mx-16 md:mt-6 md:flex md:items-center md:justify-between">
+                <SearchCountryField />
+                <Filter />
+            </div>
             <Countries />
             <ScrollToButtons />
         </div>

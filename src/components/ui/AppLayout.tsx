@@ -6,7 +6,7 @@ const AppLayout = () => {
         <div className="min-h-[100dvh] bg-colorBg">
             <Header />
 
-            <main className="px-5">
+            <main className="px-5 md:px-0">
                 <Outlet />
             </main>
         </div>
