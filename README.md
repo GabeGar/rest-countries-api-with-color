@@ -34,7 +34,7 @@ Users should be able to:
 ### Links
 
 -   Solution URL: [Github](https://github.com/GabeGar/rest-countries-api-with-color)
--   Live Site URL: [Vercel](https://your-live-site-url.com)
+-   Live Site URL: [Vercel](https://rest-countries-api-with-color-peach.vercel.app/)
 
 ## My process
 
