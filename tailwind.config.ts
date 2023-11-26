@@ -1,6 +1,5 @@
 import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
-import tailwindcssForms from '@tailwindcss/forms';
 
 export default {
     future: {
@@ -27,9 +26,5 @@ export default {
             },
         },
     },
-    plugins: [
-        tailwindcssForms({
-            strategy: 'class',
-        }),
-    ],
+    plugins: [],
 } satisfies Config;
