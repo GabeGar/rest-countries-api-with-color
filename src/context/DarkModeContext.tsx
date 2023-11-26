@@ -12,7 +12,10 @@ interface Props {
 const DarkModeContext = createContext<DarkModeContextProps | null>(null);
 
 const DarkModeContextProvider = ({ children }: Props) => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        const theme = localStorage.getItem('isDarkMode');
+        return theme ? (JSON.parse(theme) as boolean) : false;
+    });
 
     useEffect(() => {
         if (isDarkMode) {
@@ -20,6 +23,8 @@ const DarkModeContextProvider = ({ children }: Props) => {
         } else {
             document.documentElement.removeAttribute('data-theme');
         }
+
+        localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
     }, [isDarkMode]);
 
     const onToggleDarkMode = () => {
